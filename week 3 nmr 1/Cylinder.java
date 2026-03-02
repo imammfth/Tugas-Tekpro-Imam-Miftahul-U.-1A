@@ -1,33 +1,40 @@
-public class Cylinder extends Circle { // Save as &quot;Cylinder.java&quot;
-    private double height; // private variable
-    // Constructor with default color, radius and height
+public class Cylinder extends Circle { 
+    private double height; 
 
-public Cylinder() {
-    super(); // call superclass no-arg constructor Circle()
-    this.height = 1.0;
+    public Cylinder() {
+        super(); 
+        this.height = 1.0;
     }
 
-// Constructor with default radius, color but given height
-public Cylinder(double height) {
-    super(); // call superclass no-arg constructor Circle()
-    this.height = height;
+    public Cylinder(double height) {
+        super(); 
+        this.height = height;
+    }
+
+    public Cylinder(double radius, double height) {
+        super(radius); 
+        this.height = height;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+    
+    // Modifikasi: Overriding getArea() untuk Luas Permukaan Tabung
+    @Override
+    public double getArea() {
+        // 2π × radius × tinggi + 2 × luas alas
+        return (2 * Math.PI * getRadius() * height) + (2 * super.getArea());
+    }
+
+    // Modifikasi: Memperbaiki getVolume() dengan memanggil getArea() milik superclass
+    public double getVolume() {
+        return super.getArea() * height;
+    }
+    
+    // Modifikasi: Overriding toString()
+    @Override
+    public String toString() {
+        return "Cylinder: subclass of " + super.toString() + " height=" + height;
+    }
 }
-
-// Constructor with default color, but given radius, height
-public Cylinder(double radius, double height) {
-    super(radius); // call superclass constructor Circle(radius)
-    this.height = height;
-    }
-
-// A public method for retrieving the height
-public double getHeight() {
-    return height;
-    }
-
-// A public method for computing the volume of cylinder
-// use superclass method getArea() to get the base area
-public double getVolume() {
-    return getArea() * height;
-    }
-}
-
